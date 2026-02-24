@@ -1,0 +1,73 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-18T09:26:44.117Z",
+  "summary": "The diff implements most core frontend features (theme palette, navigation header with conditional Favorites link, quotes/prayers content, gallery grid + lightbox, favorites UI with sign-in prompt, and React Query hooks) and adds a Motoko backend actor for per-user favorites. However, the backend does not show any stable storage / upgrade persistence pattern required by REQ-5, and several unrequested items (caffeine.ai footer branding, admin-token access-control initialization, dark-mode theming) were introduced.",
+  "missing_requirements": [
+    {
+      "id": "REQ-5",
+      "requirement": "State persists across canister upgrades using stable storage patterns available in Motoko (no external databases).",
+      "reason": "The backend stores favorites in an in-memory Map (userFavorites) without any visible stable variable, preupgrade/postupgrade hooks, or other stable-storage pattern to persist data across upgrades.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Footer includes a caffeine.ai referral link/branding (“Built with ♥ using caffeine.ai”).",
+      "reason": "Not requested in the BuildRequest requirements or constraints; adds third-party branding/link in user-facing UI.",
+      "evidence": [
+        "frontend/src/components/AppLayout.tsx"
+      ]
+    },
+    {
+      "description": "Backend access-control initialization via a secret URL parameter (caffeineAdminToken) and calling actor._initializeAccessControlWithSecret().",
+      "reason": "BuildRequest only specifies Internet Identity auth and per-user favorites; it does not request an admin-token mechanism or access-control secret initialization from URL params.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Dark-mode theming support via next-themes ThemeProvider.",
+      "reason": "BuildRequest does not request dark mode or system theme switching; only a cohesive warm devotional theme was required.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AppLayout.tsx",
+    "frontend/src/components/AuthButton.tsx",
+    "frontend/src/components/FavoriteButton.tsx",
+    "frontend/src/components/HeaderNav.tsx",
+    "frontend/src/components/Lightbox.tsx",
+    "frontend/src/components/QueryState.tsx",
+    "frontend/src/components/SignInPromptDialog.tsx",
+    "frontend/src/content/gallery.ts",
+    "frontend/src/content/prayers.ts",
+    "frontend/src/content/quotes.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useFavorites.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/FavoritesPage.tsx",
+    "frontend/src/pages/GalleryPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/PrayersPage.tsx",
+    "frontend/src/pages/QuotesPage.tsx",
+    "frontend/src/router.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

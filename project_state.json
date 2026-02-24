@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build an app related to Radha Krishna.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Radha and Krishna elegant line-art emblem logo on transparent background (rk-emblem.dim_512x512.png)\n- Warm devotional home hero background illustration with subtle lotus and mandala motifs, no text (rk-hero-bg.dim_1920x1080.png)\n- Set of 6 square devotional gallery illustrations featuring Radha-Krishna silhouettes and floral/lotus patterns, cohesive style, no text (rk-gallery-set-1.dim_1024x1024.png)\n- Set of 6 square devotional gallery illustrations featuring peacock feather motifs and temple arches, cohesive style, no text (rk-gallery-set-2.dim_1024x1024.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-cohesive-radha-krishna-devotional-visual-theme-and-apply-it-consistently-across-the-app-colors-typography-spacing-backgrounds-components-use-a-warm-traditional-palette-e-g-saffron-marigold-deep-green-cream-and-avoid-blue-purple-as-the-primary-brand-colors",
+      "title": "Create a cohesive Radha–Krishna devotional visual theme and apply it consistently across the app (colors, typography, spacing, backgrounds, components). Use a warm, traditional palette (e.g., saffron, marigold, deep green, cream) and avoid blue/purple as the primary brand colors.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-core-navigation-with-a-responsive-layout-and-the-following-pages-home-quotes-gallery-prayers-and-my-favorites-visible-after-sign-in",
+      "title": "Implement core navigation with a responsive layout and the following pages: Home, Quotes, Gallery, Prayers, and My Favorites (visible after sign-in).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-curated-radha-krishna-devotional-content-in-english-for-offline-use-a-a-quotes-page-that-lists-at-least-30-short-devotional-quotes-and-b-a-prayers-page-with-at-least-5-prayer-chant-entries-title-text",
+      "title": "Add curated Radha–Krishna devotional content in English for offline use: (a) a Quotes page that lists at least 30 short devotional quotes, and (b) a Prayers page with at least 5 prayer/chant entries (title + text).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enable-users-to-favorite-unfavorite-quotes-and-prayers-and-view-them-in-a-my-favorites-page-persist-favorites-per-authenticated-user-in-the-backend",
+      "title": "Enable users to favorite/unfavorite quotes and prayers, and view them in a My Favorites page. Persist favorites per authenticated user in the backend.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-frontend-integrate-backend-favorites-using-react-query-queries-mutations-with-loading-error-and-empty-states-on-relevant-screens",
+      "title": "Frontend: Integrate backend favorites using React Query (queries + mutations) with loading, error, and empty states on relevant screens.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-gallery-page-that-displays-a-grid-of-devotional-images-static-assets-with-a-full-screen-lightbox-view-when-an-image-is-clicked",
+      "title": "Create a Gallery page that displays a grid of devotional images (static assets) with a full-screen/lightbox view when an image is clicked.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-images-as-static-assets-under-frontend-public-assets-generated-and-render-them-in-the-ui-e-g-hero-background-on-home-and-items-in-gallery",
+      "title": "Add generated images as static assets under frontend/public/assets/generated and render them in the UI (e.g., hero background on Home and items in Gallery).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create an app for/related to Radha Krishna (devotional-themed app).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Backend: Implement a single Motoko actor API to store and retrieve per-user favorites for quotes and prayers (identified by stable IDs). Include methods to get favorites, add favorite, remove favorite, and clear all favorites for the caller.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Radha Krishna Bhakti",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

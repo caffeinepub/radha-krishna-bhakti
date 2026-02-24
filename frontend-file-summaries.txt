@@ -1,0 +1,23 @@
+{
+  "frontend/index.css": "Global styles with warm devotional OKLCH color palette (saffron, marigold, cream, deep green) for light and dark modes, plus custom devotional gradient utility.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with devotional color tokens, custom fonts (Inter, Crimson Text), devotional shadow, and fade-in animation.",
+  "frontend/src/App.tsx": "Root application component that wraps the router with ThemeProvider and renders the Toaster for notifications.",
+  "frontend/src/router.tsx": "TanStack Router configuration defining routes for Home, Quotes, Prayers, Gallery, and Favorites pages with shared AppLayout.",
+  "frontend/src/components/AppLayout.tsx": "Shared layout wrapper providing consistent header navigation and footer with caffeine.ai attribution across all pages.",
+  "frontend/src/components/HeaderNav.tsx": "Responsive navigation header with logo, page links, authentication button, and mobile menu; hides Favorites link when unauthenticated.",
+  "frontend/src/components/AuthButton.tsx": "Login/logout button component using Internet Identity with loading states and query cache clearing on logout.",
+  "frontend/src/components/FavoriteButton.tsx": "Reusable heart-shaped favorite toggle button that prompts sign-in for unauthenticated users and mutates favorites via React Query.",
+  "frontend/src/components/SignInPromptDialog.tsx": "Modal dialog prompting users to sign in when attempting to favorite content while unauthenticated.",
+  "frontend/src/components/Lightbox.tsx": "Full-screen image viewer dialog component for gallery images with close button.",
+  "frontend/src/components/QueryState.tsx": "Reusable component for consistent loading, error, and empty state rendering across data-fetching pages.",
+  "frontend/src/hooks/useFavorites.ts": "React Query hooks for fetching favorites and mutating quote/prayer favorites with cache invalidation.",
+  "frontend/src/content/quotes.ts": "Static dataset of 32 devotional quotes with stable IDs for offline use and favorites mapping.",
+  "frontend/src/content/prayers.ts": "Static dataset of 7 devotional prayers with titles and multi-line text for offline use and favorites mapping.",
+  "frontend/src/content/gallery.ts": "Static list of gallery images with metadata referencing generated assets in public/assets/generated.",
+  "frontend/src/pages/HomePage.tsx": "Landing page with hero section using generated background, feature cards linking to Quotes/Prayers/Gallery, and favorites call-to-action.",
+  "frontend/src/pages/QuotesPage.tsx": "Quotes listing page displaying all quotes with favorite buttons and loading/error states for authenticated users.",
+  "frontend/src/pages/PrayersPage.tsx": "Prayers listing page displaying all prayers with titles, multi-line text, favorite buttons, and loading/error states.",
+  "frontend/src/pages/GalleryPage.tsx": "Responsive image grid displaying devotional gallery images with click-to-open lightbox functionality.",
+  "frontend/src/pages/FavoritesPage.tsx": "Authenticated-only page showing user's favorited quotes and prayers with remove actions, empty states, and sign-in prompt for guests.",
+  "frontend/src/main.tsx": "Application entry point that sets up React Query, Internet Identity provider, and renders the App component with correct relative CSS import."
+}

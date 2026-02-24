@@ -1,0 +1,165 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-cohesive-radha-krishna-devotional-visual-theme-and-apply-it-consistently-across-the-app-colors-typography-spacing-backgrounds-components-use-a-warm-traditional-palette-e-g-saffron-marigold-deep-green-cream-and-avoid-blue-purple-as-the-primary-brand-colors",
+      "featureTitle": "Create a cohesive Radha–Krishna devotional visual theme and apply it consistently across the app (colors, typography, spacing, backgrounds, components). Use a warm, traditional palette (e.g., saffron, marigold, deep green, cream) and avoid blue/purple as the primary brand colors.",
+      "files": [
+        "frontend/index.css",
+        "frontend/src/components/AppLayout.tsx",
+        "frontend/src/main.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-core-navigation-with-a-responsive-layout-and-the-following-pages-home-quotes-gallery-prayers-and-my-favorites-visible-after-sign-in",
+      "featureTitle": "Implement core navigation with a responsive layout and the following pages: Home, Quotes, Gallery, Prayers, and My Favorites (visible after sign-in).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/AuthButton.tsx",
+        "frontend/src/components/HeaderNav.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/FavoritesPage.tsx",
+        "frontend/src/pages/GalleryPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/PrayersPage.tsx",
+        "frontend/src/pages/QuotesPage.tsx",
+        "frontend/src/router.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-curated-radha-krishna-devotional-content-in-english-for-offline-use-a-a-quotes-page-that-lists-at-least-30-short-devotional-quotes-and-b-a-prayers-page-with-at-least-5-prayer-chant-entries-title-text",
+      "featureTitle": "Add curated Radha–Krishna devotional content in English for offline use: (a) a Quotes page that lists at least 30 short devotional quotes, and (b) a Prayers page with at least 5 prayer/chant entries (title + text).",
+      "files": [
+        "frontend/src/content/prayers.ts",
+        "frontend/src/content/quotes.ts",
+        "frontend/src/pages/PrayersPage.tsx",
+        "frontend/src/pages/QuotesPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enable-users-to-favorite-unfavorite-quotes-and-prayers-and-view-them-in-a-my-favorites-page-persist-favorites-per-authenticated-user-in-the-backend",
+      "featureTitle": "Enable users to favorite/unfavorite quotes and prayers, and view them in a My Favorites page. Persist favorites per authenticated user in the backend.",
+      "files": [
+        "frontend/src/components/FavoriteButton.tsx",
+        "frontend/src/components/HeaderNav.tsx",
+        "frontend/src/components/SignInPromptDialog.tsx",
+        "frontend/src/pages/FavoritesPage.tsx",
+        "frontend/src/pages/PrayersPage.tsx",
+        "frontend/src/pages/QuotesPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-frontend-integrate-backend-favorites-using-react-query-queries-mutations-with-loading-error-and-empty-states-on-relevant-screens",
+      "featureTitle": "Frontend: Integrate backend favorites using React Query (queries + mutations) with loading, error, and empty states on relevant screens.",
+      "files": [
+        "frontend/src/components/FavoriteButton.tsx",
+        "frontend/src/components/QueryState.tsx",
+        "frontend/src/hooks/useFavorites.ts",
+        "frontend/src/pages/FavoritesPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-gallery-page-that-displays-a-grid-of-devotional-images-static-assets-with-a-full-screen-lightbox-view-when-an-image-is-clicked",
+      "featureTitle": "Create a Gallery page that displays a grid of devotional images (static assets) with a full-screen/lightbox view when an image is clicked.",
+      "files": [
+        "frontend/src/components/Lightbox.tsx",
+        "frontend/src/content/gallery.ts",
+        "frontend/src/pages/GalleryPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-images-as-static-assets-under-frontend-public-assets-generated-and-render-them-in-the-ui-e-g-hero-background-on-home-and-items-in-gallery",
+      "featureTitle": "Add generated images as static assets under frontend/public/assets/generated and render them in the UI (e.g., hero background on Home and items in Gallery).",
+      "files": [
+        "frontend/src/components/HeaderNav.tsx",
+        "frontend/src/content/gallery.ts",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

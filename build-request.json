@@ -1,0 +1,180 @@
+{
+  "kind": "build_request",
+  "title": "Radha Krishna devotional app (quotes, gallery, prayers, favorites)",
+  "projectName": "Radha Krishna Bhakti",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a cohesive Radha–Krishna devotional visual theme and apply it consistently across the app (colors, typography, spacing, backgrounds, components). Use a warm, traditional palette (e.g., saffron, marigold, deep green, cream) and avoid blue/purple as the primary brand colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app for radha krishna"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share a consistent color palette, typography scale, and component styling.",
+        "Primary UI elements (headers, buttons, cards) match the devotional theme and remain readable and accessible."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement core navigation with a responsive layout and the following pages: Home, Quotes, Gallery, Prayers, and My Favorites (visible after sign-in).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app for radha krishna"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can navigate between Home, Quotes, Gallery, and Prayers from a persistent header/menu.",
+        "Layout works on mobile and desktop without horizontal overflow.",
+        "My Favorites is accessible only when the user is authenticated (Internet Identity)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add curated Radha–Krishna devotional content in English for offline use: (a) a Quotes page that lists at least 30 short devotional quotes, and (b) a Prayers page with at least 5 prayer/chant entries (title + text).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app for radha krishna"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Quotes page displays a list of at least 30 English quotes.",
+        "Prayers page displays at least 5 entries, each with a title and multi-line text.",
+        "Content renders correctly with line breaks and is readable on mobile."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Enable users to favorite/unfavorite quotes and prayers, and view them in a My Favorites page. Persist favorites per authenticated user in the backend.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app for radha krishna"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Unauthenticated users can browse content but are prompted to sign in when attempting to favorite.",
+        "After signing in, favoriting/unfavoriting updates immediately in the UI and persists across reloads.",
+        "My Favorites shows the user’s favorited quotes and prayers and allows removing items from favorites."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Backend: Implement a single Motoko actor API to store and retrieve per-user favorites for quotes and prayers (identified by stable IDs). Include methods to get favorites, add favorite, remove favorite, and clear all favorites for the caller.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app for radha krishna"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Favorites are stored per caller principal and do not leak across users.",
+        "API supports add/remove operations for both quote IDs and prayer IDs.",
+        "State persists across canister upgrades using stable storage patterns available in Motoko (no external databases)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Frontend: Integrate backend favorites using React Query (queries + mutations) with loading, error, and empty states on relevant screens.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app for radha krishna"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Favorites data is fetched via React Query and cached appropriately.",
+        "Mutations (favorite/unfavorite) show a disabled/loading state and surface errors in a user-friendly way.",
+        "Empty states are shown when there are no favorites, and when lists are empty."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Create a Gallery page that displays a grid of devotional images (static assets) with a full-screen/lightbox view when an image is clicked.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app for radha krishna"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Gallery shows a responsive grid of the provided static images.",
+        "Clicking an image opens a larger view with a close action; users can return to the grid."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add generated images as static assets under frontend/public/assets/generated and render them in the UI (e.g., hero background on Home and items in Gallery).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app for radha krishna"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images exist in frontend/public/assets/generated and are referenced directly from the frontend (not served via backend).",
+        "Home includes at least one generated hero/background image.",
+        "Gallery includes the generated images as entries."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for all user-facing text.",
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not modify files under frontend/src/components/ui or other immutable paths listed in SYSTEM_CONTEXT; compose them instead.",
+    "Do not use any external databases or third-party auth providers; use Internet Identity for authentication."
+  ],
+  "nonGoals": [
+    "Audio streaming (bhajans) or integrating external media APIs.",
+    "Push notifications, email/SMS messaging, or real-time chat.",
+    "Admin CMS or uploading user-generated images."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Radha and Krishna elegant line-art emblem logo on transparent background (rk-emblem.dim_512x512.png)",
+      "Warm devotional home hero background illustration with subtle lotus and mandala motifs, no text (rk-hero-bg.dim_1920x1080.png)",
+      "Set of 6 square devotional gallery illustrations featuring Radha-Krishna silhouettes and floral/lotus patterns, cohesive style, no text (rk-gallery-set-1.dim_1024x1024.png)",
+      "Set of 6 square devotional gallery illustrations featuring peacock feather motifs and temple arches, cohesive style, no text (rk-gallery-set-2.dim_1024x1024.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

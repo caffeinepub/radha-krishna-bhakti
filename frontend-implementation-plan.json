@@ -1,0 +1,272 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Radha Krishna Bhakti — Frontend implementation plan",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Apply a cohesive warm Radha–Krishna devotional theme (palette, typography, spacing, backgrounds) across the app.",
+      "acceptanceCriteria": [
+        "All pages share a consistent color palette, typography scale, and component styling.",
+        "Primary UI elements (headers, buttons, cards) match the devotional theme and remain readable and accessible."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.css",
+          "operation": "modify",
+          "description": "Adjust global CSS variables and base styling to a warm devotional palette (saffron/marigold/deep green/cream) and ensure accessible contrast; avoid blue/purple as primary brand colors."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme tokens to support the devotional palette and consistent radii/shadows so shared components/pages can use theme-aligned utility classes."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Fix global stylesheet import to reference the correct global CSS file location and ensure the theme is applied consistently across the app."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a shared layout wrapper (header + main container + background styling) that applies consistent spacing, typography scale, and devotional look across all pages. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement responsive navigation and pages: Home, Quotes, Gallery, Prayers, and an authenticated-only My Favorites page (Internet Identity).",
+      "acceptanceCriteria": [
+        "Users can navigate between Home, Quotes, Gallery, and Prayers from a persistent header/menu.",
+        "Layout works on mobile and desktop without horizontal overflow.",
+        "My Favorites is accessible only when the user is authenticated (Internet Identity)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the application root component to wire routing, shared layout, and top-level providers/guards used by required pages."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "create",
+          "description": "Add app routing for Home, Quotes, Gallery, Prayers, and My Favorites; ensure My Favorites is gated by Internet Identity authentication state."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Wire the newly created App component and router into the React entry point so all pages are navigable."
+        },
+        {
+          "path": "frontend/src/components/HeaderNav.tsx",
+          "operation": "create",
+          "description": "Implement a responsive persistent header/menu with navigation links and a login/logout control; hide My Favorites link when unauthenticated. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/AuthButton.tsx",
+          "operation": "create",
+          "description": "Create a login/logout button using the selected \"authorization\" component guidance (Internet Identity via useInternetIdentity; clear React Query cache on logout). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create the Home page with devotional hero section and links/CTAs to Quotes, Prayers, and Gallery."
+        },
+        {
+          "path": "frontend/src/pages/QuotesPage.tsx",
+          "operation": "create",
+          "description": "Create the Quotes page view and wire it to offline curated quotes with favorite actions."
+        },
+        {
+          "path": "frontend/src/pages/PrayersPage.tsx",
+          "operation": "create",
+          "description": "Create the Prayers page view and wire it to offline curated prayers with favorite actions."
+        },
+        {
+          "path": "frontend/src/pages/GalleryPage.tsx",
+          "operation": "create",
+          "description": "Create the Gallery page view showing a responsive image grid and a lightbox/modal viewer on click."
+        },
+        {
+          "path": "frontend/src/pages/FavoritesPage.tsx",
+          "operation": "create",
+          "description": "Create the My Favorites page (authenticated-only) showing favorited quotes/prayers with remove actions and empty/loading/error states."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Provide offline curated English devotional content: at least 30 quotes and at least 5 prayers (title + multi-line text).",
+      "acceptanceCriteria": [
+        "Quotes page displays a list of at least 30 English quotes.",
+        "Prayers page displays at least 5 entries, each with a title and multi-line text.",
+        "Content renders correctly with line breaks and is readable on mobile."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/quotes.ts",
+          "operation": "create",
+          "description": "Add an offline English quotes dataset with stable IDs (>=30 items) to be used by the Quotes page and favorites mapping."
+        },
+        {
+          "path": "frontend/src/content/prayers.ts",
+          "operation": "create",
+          "description": "Add an offline English prayers/chants dataset with stable IDs and multi-line text (>=5 items) to be used by the Prayers page and favorites mapping."
+        },
+        {
+          "path": "frontend/src/pages/QuotesPage.tsx",
+          "operation": "modify",
+          "description": "Render the offline quotes dataset with readable devotional card styling and ensure the quote text is mobile-friendly."
+        },
+        {
+          "path": "frontend/src/pages/PrayersPage.tsx",
+          "operation": "modify",
+          "description": "Render the offline prayers dataset with correct multi-line formatting (line breaks preserved) and mobile-readable typography."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Allow users to favorite/unfavorite quotes and prayers and view/manage them in My Favorites; prompt sign-in for favoriting attempts.",
+      "acceptanceCriteria": [
+        "Unauthenticated users can browse content but are prompted to sign in when attempting to favorite.",
+        "After signing in, favoriting/unfavoriting updates immediately in the UI and persists across reloads.",
+        "My Favorites shows the user’s favorited quotes and prayers and allows removing items from favorites."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FavoriteButton.tsx",
+          "operation": "create",
+          "description": "Create a reusable favorite/unfavorite UI control for quotes/prayers that prompts Internet Identity sign-in when unauthenticated, and triggers React Query mutations when authenticated. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SignInPromptDialog.tsx",
+          "operation": "create",
+          "description": "Add a modal/dialog prompting the user to sign in when attempting to favorite while unauthenticated (compose existing shadcn/ui dialog components without modifying immutable ui paths). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/QuotesPage.tsx",
+          "operation": "modify",
+          "description": "Wire FavoriteButton into each quote item, using stable quote IDs; ensure unauthenticated users can still browse."
+        },
+        {
+          "path": "frontend/src/pages/PrayersPage.tsx",
+          "operation": "modify",
+          "description": "Wire FavoriteButton into each prayer item, using stable prayer IDs; ensure unauthenticated users can still browse."
+        },
+        {
+          "path": "frontend/src/pages/FavoritesPage.tsx",
+          "operation": "modify",
+          "description": "Map favorited IDs to offline quote/prayer content for display and provide remove-from-favorites actions."
+        },
+        {
+          "path": "frontend/src/components/HeaderNav.tsx",
+          "operation": "modify",
+          "description": "Ensure My Favorites navigation entry is only visible when authenticated; keep public pages accessible without login (per BuildRequest)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Integrate backend favorites using React Query (queries + mutations) with loading/error/empty states across relevant screens.",
+      "acceptanceCriteria": [
+        "Favorites data is fetched via React Query and cached appropriately.",
+        "Mutations (favorite/unfavorite) show a disabled/loading state and surface errors in a user-friendly way.",
+        "Empty states are shown when there are no favorites, and when lists are empty."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useFavorites.ts",
+          "operation": "create",
+          "description": "Implement React Query hooks for fetching favorites and mutating quote/prayer favorites using the provided backend interface; include cache invalidation/optimistic update strategy."
+        },
+        {
+          "path": "frontend/src/components/QueryState.tsx",
+          "operation": "create",
+          "description": "Add a small UI helper for consistent loading, error, and empty-state rendering across Quotes/Prayers/Favorites pages (compose shadcn/ui components if needed). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/FavoriteButton.tsx",
+          "operation": "modify",
+          "description": "Use React Query mutations for favorite/unfavorite, show disabled/loading state during mutation, and display user-friendly errors."
+        },
+        {
+          "path": "frontend/src/pages/FavoritesPage.tsx",
+          "operation": "modify",
+          "description": "Use the favorites query hook; render loading/error/empty states; ensure content is refreshed and stable across reloads."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement a Gallery page with a responsive grid of static devotional images and a full-screen/lightbox view on click.",
+      "acceptanceCriteria": [
+        "Gallery shows a responsive grid of the provided static images.",
+        "Clicking an image opens a larger view with a close action; users can return to the grid."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/gallery.ts",
+          "operation": "create",
+          "description": "Define a static list of gallery images (titles/alt text + file paths to generated assets) to drive the Gallery grid and lightbox viewer."
+        },
+        {
+          "path": "frontend/src/components/Lightbox.tsx",
+          "operation": "create",
+          "description": "Create a lightbox/fullscreen image viewer component with close action (compose existing shadcn/ui dialog components; do not modify immutable ui paths). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/GalleryPage.tsx",
+          "operation": "modify",
+          "description": "Render a responsive image grid from the gallery content list and open the Lightbox when an image is selected."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add required generated images under frontend/public/assets/generated and reference them directly in Home (hero/background) and Gallery.",
+      "acceptanceCriteria": [
+        "Generated images exist in frontend/public/assets/generated and are referenced directly from the frontend (not served via backend).",
+        "Home includes at least one generated hero/background image.",
+        "Gallery includes the generated images as entries."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/rk-emblem.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static asset file and ensure it is referenced from the frontend UI where appropriate (e.g., header/branding)."
+        },
+        {
+          "path": "frontend/public/assets/generated/rk-hero-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated static asset file and wire it into the Home hero/background presentation."
+        },
+        {
+          "path": "frontend/public/assets/generated/rk-gallery-set-1.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated static asset file and include it as Gallery content."
+        },
+        {
+          "path": "frontend/public/assets/generated/rk-gallery-set-2.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated static asset file and include it as Gallery content."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Reference frontend/public/assets/generated/rk-hero-bg.dim_1920x1080.png in the Home hero/background and include devotional branding with the emblem asset."
+        },
+        {
+          "path": "frontend/src/components/HeaderNav.tsx",
+          "operation": "modify",
+          "description": "Reference frontend/public/assets/generated/rk-emblem.dim_512x512.png for app branding in the persistent header."
+        },
+        {
+          "path": "frontend/src/content/gallery.ts",
+          "operation": "modify",
+          "description": "Ensure the gallery content list includes frontend/public/assets/generated/rk-gallery-set-1.dim_1024x1024.png and frontend/public/assets/generated/rk-gallery-set-2.dim_1024x1024.png (and any additional provided/generated entries if present)."
+        }
+      ]
+    }
+  ]
+}
